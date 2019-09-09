@@ -1,0 +1,13 @@
+apply from: file("${rootDir}/gradle/app.gradle")
+
+group 'steve.java.basic'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
