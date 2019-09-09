@@ -15,13 +15,14 @@ import java.util.Map;
 public class MyHttpHandler implements HttpHandler {
     @Override
     public void handleRequest(HttpServerExchange exchange) throws Exception {
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
-        StreamSourceChannel requestChannel = exchange.getRequestChannel();
         Map<String, Deque<String>> queryParameters = exchange.getQueryParameters();
         Deque<String> name = queryParameters.get("name");
-        String first = name.getFirst();
-        System.out.println(first);
+        String first = "";
+        if (!name.isEmpty()) {
+            first = name.getFirst();
+            System.out.println(first);
+        }
         exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
-        exchange.getResponseSender().send("hello, ");
+        exchange.getResponseSender().send("hello, " + first);
     }
 }
