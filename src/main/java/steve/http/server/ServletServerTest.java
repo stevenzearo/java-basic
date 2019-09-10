@@ -1,4 +1,4 @@
-package steve.http;
+package steve.http.server;
 
 import io.undertow.Handlers;
 import io.undertow.Undertow;
@@ -15,14 +15,14 @@ import javax.servlet.ServletException;
 /**
  * @author steve
  */
-public class ServerTest2 {
+public class ServletServerTest {
     public static void main(String[] args) throws ServletException {
         ServletInfo servletInfo = Servlets.servlet("userServlet", UserServlet.class);
         servletInfo.addInitParam("name", "steve");
         servletInfo.addMappings("/userServlet");
         DeploymentInfo deployment = Servlets.deployment();
         deployment.setContextPath("/underTow");
-        deployment.setClassLoader(ServerTest2.class.getClassLoader());
+        deployment.setClassLoader(ServletServerTest.class.getClassLoader());
         deployment.setDeploymentName("undertowTest.war");
         deployment.addServlet(servletInfo);
         ServletContainer servletContainer = Servlets.defaultContainer();

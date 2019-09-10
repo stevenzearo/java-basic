@@ -1,4 +1,4 @@
-package steve.http;
+package steve.http.server;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

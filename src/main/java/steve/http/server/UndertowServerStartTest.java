@@ -1,4 +1,4 @@
-package steve.http;
+package steve.http.server;
 
 
 import io.undertow.Undertow;
@@ -6,7 +6,7 @@ import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
 
-public class HttpServerTest {
+public class UndertowServerStartTest {
     public static void main(String[] args) {
         Undertow server = Undertow.builder().addHttpListener(8843, "localhost").setHandler(new HttpHandler() {
             @Override
