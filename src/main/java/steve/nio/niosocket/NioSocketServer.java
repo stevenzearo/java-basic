@@ -26,12 +26,12 @@ public class NioSocketServer {
                 System.out.println("wait for accept timeout......");
                 continue;
             }
-            System.out.println("procession accept......");
             Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
             while (iterator.hasNext()) {
                 SelectionKey key = iterator.next();
                 try {
                     if (key.isAcceptable()) {
+                        System.out.println("procession accept......");
                         handler.handleAccept(key);
                     }
 

@@ -22,9 +22,7 @@ public class NioSocketClient {
         } else {
             socketChannel.register(selector, SelectionKey.OP_CONNECT);
         }
-        boolean flag = true;
-        while (flag) {
-            selector.select();
+        while (selector.select(3000) > 0) {
             Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
             while (iterator.hasNext()) {
                 SelectionKey next = iterator.next();
@@ -43,7 +41,7 @@ public class NioSocketClient {
                         System.out.println("get message: " + message);
                     }
                     next.cancel();
-                    flag = false;
+                    channel.close();
                 }
                 iterator.remove();
             }

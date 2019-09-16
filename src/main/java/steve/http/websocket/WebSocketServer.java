@@ -13,6 +13,7 @@ import io.undertow.websockets.core.WebSocketCallback;
 import io.undertow.websockets.core.WebSocketChannel;
 import io.undertow.websockets.core.WebSocketFrame;
 import io.undertow.websockets.core.WebSocketFrameType;
+import io.undertow.websockets.core.WebSockets;
 import io.undertow.websockets.core.protocol.version13.WebSocket13Channel;
 import io.undertow.websockets.spi.WebSocketHttpExchange;
 import org.xnio.ChannelListener;
@@ -27,6 +28,7 @@ import steve.http.session.RootHttpHandler;
 
 import java.io.IOException;
 import java.net.SocketAddress;
+import java.net.http.WebSocket;
 import java.nio.ByteBuffer;
 import java.nio.file.Path;
 
@@ -46,17 +48,6 @@ public class WebSocketServer {
         resourceHandler2.setDirectoryListingEnabled(true);
         resourceHandler2.setWelcomeFiles("favicon.ico");
 
-        new WebSocketCallback<WebSocketChannel>() {
-            @Override
-            public void complete(WebSocketChannel channel, WebSocketChannel context) {
-
-            }
-
-            @Override
-            public void onError(WebSocketChannel channel, WebSocketChannel context, Throwable throwable) {
-
-            }
-        };
         pathHandler.addPrefixPath("/static", resourceHandler);
         pathHandler.addPrefixPath("/", resourceHandler2);
         new WebSocketProtocolHandshakeHandler(new WebSocketConnectionCallback() {
