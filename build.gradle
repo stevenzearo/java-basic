@@ -1,17 +1,27 @@
-apply from: file("${rootDir}/gradle/app.gradle")
-
-group 'steve.java.basic'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
+apply from: file("${rootDir}/gradle/project.gradle")
+subprojects {
+    group 'steve.java.basic'
+    version '1.0-SNAPSHOT'
+    repositories {
+        mavenCentral()
+    }
+}
+configure(project(':basic')) {
+    apply from: file("${rootDir}/gradle/app.gradle")
+    dependencies {
+        implementation 'org.mongodb:mongo-java-driver:3.10.2'
+        implementation 'io.undertow:undertow-core:2.0.23.Final'
+        implementation 'io.undertow:undertow-servlet:2.0.23.Final'
+        implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    }
 }
 
-dependencies {
-    implementation 'org.mongodb:mongo-java-driver:3.10.2'
-    implementation 'io.undertow:undertow-core:2.0.23.Final'
-    implementation 'io.undertow:undertow-servlet:2.0.23.Final'
-    implementation 'javax.servlet:javax.servlet-api:4.0.1'
-
+configure(project(':jdk13')) {
+    apply from: file("${rootDir}/gradle/app.gradle")
+    dependencies {
+        implementation 'com.fasterxml.jackson.core:jackson-core:2.8.1'
+        implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.1'
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.1'
+        implementation 'com.google.code.gson:gson:2.2.4'
+    }
 }
-
