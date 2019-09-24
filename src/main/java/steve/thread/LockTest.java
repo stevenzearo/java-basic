@@ -2,6 +2,7 @@ package steve.thread;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author steve
@@ -11,9 +12,7 @@ public class LockTest {
     private static volatile int a = 100;
 
     public static void sub() {
-        if (a > 0) {
-            a --;
-        }
+        if (a > 0) a --;
     }
 
     public static void method1() {
@@ -63,6 +62,6 @@ public class LockTest {
         thread2.start();
         thread3.start();
         thread4.start();
-
+//        ReentrantReadWriteLock.ReadLock
     }
 }
