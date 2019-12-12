@@ -51,14 +51,14 @@ public class NioSocketServer {
     private static class Handler {
         int bufferSize = 1024;
 
-        public void handleAccept(SelectionKey key) throws IOException {
+        void handleAccept(SelectionKey key) throws IOException {
             SocketChannel socketChannel = ((ServerSocketChannel) key.channel()).accept();
             socketChannel.configureBlocking(false);
             socketChannel.register(key.selector(), SelectionKey.OP_READ, ByteBuffer.allocate(bufferSize));
 
         }
 
-        public void handRead(SelectionKey key) throws IOException {
+        void handRead(SelectionKey key) throws IOException {
             SocketChannel channel = (SocketChannel) key.channel();
             ByteBuffer byteBuffer = (ByteBuffer) key.attachment();
             byteBuffer.clear();
